@@ -1,0 +1,16 @@
+{
+    "name": "Image Tracer",
+    "version": "1.0",
+    "description": "Creates a menu to display an image of choice to trace for drawing apps.",
+    "permissions": [
+        "activeTab"
+    ],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "browser_action": {
+        "default_icon": "icon.png"
+    },
+    "manifest_version": 2
+}

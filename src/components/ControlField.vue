@@ -29,6 +29,7 @@ defineProps<{
 	font-size: 12px;
 	margin-bottom: 4px;
 	color: #334155;
+	user-select: none;
 }
 
 .control-field-error {

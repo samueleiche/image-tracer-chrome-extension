@@ -57,11 +57,11 @@ const { showControls, toggleShowControls } = useControls()
 
 .controls-menu-activator--active {
 	background-color: white;
-	outline: rgba(0, 0, 0, 0.15) solid 4px;
+	outline: #cbd5e1 solid 4px;
 }
 
 .controls-menu-activator--active:hover {
-	background-color: rgba(0, 0, 0, 0.15);
+	background-color: #cbd5e1;
 }
 
 .controls-menu-activator--active:focus {

@@ -1,7 +1,7 @@
 <template>
 	<div :class="['tracer-container', { 'tracer-container--controls-visible': showControls }]">
 		<div class="tracer-overlay" :style="{ opacity }">
-			<TracerImage v-if="imageSrc" :src="imageSrc" :draggable="showControls" :scale="scale" />
+			<TracerImage v-if="imageSrc" :src="imageSrc" />
 		</div>
 
 		<ControlsMenu>

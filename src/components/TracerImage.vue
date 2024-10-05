@@ -13,7 +13,7 @@
 import { ref, computed } from 'vue'
 import { useControls } from '../composables/useControls'
 
-const { showControls } = useControls()
+const { showControls, scale } = useControls()
 
 interface DragState {
 	initialX: number
@@ -26,8 +26,6 @@ interface DragState {
 
 const props = defineProps<{
 	src: string
-	draggable: boolean
-	scale: number
 }>()
 
 const imgRef = ref<HTMLElement | null>(null)
@@ -43,8 +41,9 @@ const drag = ref<DragState>({
 })
 
 const eventHandlers = computed(() => {
-	if (props.src && props.draggable) {
+	if (props.src && showControls.value) {
 		return {
+			wheel,
 			mousedown,
 			mousemove,
 			mouseup,
@@ -53,6 +52,23 @@ const eventHandlers = computed(() => {
 
 	return {}
 })
+
+const wheel = (event: WheelEvent) => {
+	const zoomFactor = 0.01 * event.deltaY
+	let zoom = scale.value
+
+	zoom -= zoomFactor
+
+	if (zoom < 0.01) {
+		zoom = 0.01
+	} else if (zoom > 8) {
+		zoom = 8
+	}
+
+	scale.value = parseFloat(zoom.toFixed(2))
+
+	event.preventDefault()
+}
 
 const computedTransform = computed(() => {
 	if (!imgRef.value) {
@@ -63,7 +79,7 @@ const computedTransform = computed(() => {
 	const y = drag.value.currentY
 
 	return {
-		transform: `translate3d(${x}px, ${y}px, 0) scale(${props.scale}, ${props.scale})`,
+		transform: `translate3d(${x}px, ${y}px, 0) scale(${scale.value}, ${scale.value})`,
 	}
 })
 

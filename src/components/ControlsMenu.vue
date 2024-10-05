@@ -86,7 +86,7 @@ const { showControls, toggleShowControls } = useControls()
 .menu-transition-enter-active,
 .menu-transition-leave-active {
 	transition:
-		transform 300ms,
+		transform 200ms,
 		opacity 150ms,
 		background-color 150ms;
 }

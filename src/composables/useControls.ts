@@ -9,12 +9,19 @@ function toggleShowControls() {
 	showControls.value = !showControls.value
 }
 
+function resetControls() {
+	opacity.value = 0.7
+	scale.value = 1
+	rotation.value = 0
+}
+
 export function useControls() {
 	return {
 		opacity,
 		scale,
 		rotation,
 		showControls,
+		resetControls,
 		toggleShowControls,
 	}
 }

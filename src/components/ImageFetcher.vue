@@ -40,8 +40,8 @@ async function onChange(event: Event) {
 
 	try {
 		const fileUrl = await loadFileUrl(inputValue)
-
 		emit('change', fileUrl)
+		target.value = ''
 	} catch (err) {
 		console.error('Failed to load file')
 

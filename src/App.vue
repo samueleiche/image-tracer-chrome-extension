@@ -11,14 +11,19 @@
 			</ControlFieldGroup>
 
 			<ControlFieldGroup>
-				<RangeFIeld :label="`Opacity ${opacity}`" :min="0" :max="100" v-model="opacity" />
-				<RangeFIeld :label="`Scale ${scale}x`" :min="1" :max="800" v-model="scale" />
-				<RangeFIeld :label="`Rotate ${rotation}deg`" :min="-36000" :max="36000" v-model="rotation" />
+				<RangeField :label="`Opacity ${opacity}`" :min="0" :max="100" v-model="opacity" />
+				<RangeField :label="`Scale ${scale}x`" :min="1" :max="800" v-model="scale" />
+				<RangeField :label="`Rotate ${rotation}deg`" :min="-36000" :max="36000" v-model="rotation" />
+			</ControlFieldGroup>
+
+			<ControlFieldGroup v-if="imageSrc">
+				<TextButton label="Clear image" @click="clearImage" />
+				<TextButton label="Reset controls" title="Reset opacity, scale and rotation" @click="resetControls" />
 			</ControlFieldGroup>
 
 			<template #footer>
 				<div class="controls-helper">
-					Tips: scrolling on the image will zoom it and shift+scroll will rotate it when this menu is open.
+					Tips: scrolling on the image will zoom in and shift+scroll will rotate it when this menu is open.
 				</div>
 			</template>
 		</ControlsMenu>
@@ -32,12 +37,17 @@ import ControlFieldGroup from './components/ControlFieldGroup.vue'
 import TracerImage from './components/TracerImage.vue'
 import ImagePicker from './components/ImagePicker.vue'
 import ImageFetcher from './components/ImageFetcher.vue'
-import RangeFIeld from './components/RangeField.vue'
+import RangeField from './components/RangeField.vue'
+import TextButton from './components/TextButton.vue'
 import { useControls } from './composables/useControls'
 
-const { opacity, scale, showControls, rotation } = useControls()
+const { opacity, scale, showControls, resetControls, rotation } = useControls()
 
 const imageSrc = ref<string | undefined>(undefined)
+
+function clearImage() {
+	imageSrc.value = undefined
+}
 </script>
 
 <style>

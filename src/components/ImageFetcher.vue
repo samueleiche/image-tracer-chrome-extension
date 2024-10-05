@@ -1,6 +1,13 @@
 <template>
-	<ControlField label="Paste file URL" :error="errorMessage">
-		<input type="text" placeholder="Paste and Enter" class="input-control" @change="onChange" />
+	<ControlField label="Paste image address" :error="errorMessage">
+		<input
+			type="text"
+			placeholder="Press enter to submit"
+			class="input-control"
+			@input="onInput"
+			@change="onChange"
+			@paste="onPaste"
+		/>
 	</ControlField>
 </template>
 
@@ -13,13 +20,23 @@ const emit = defineEmits<{
 	(e: 'change', fileUrl: string): void
 }>()
 
-const errorMessage = ref('err')
+const errorMessage = ref('')
+
+function onInput() {
+	errorMessage.value = ''
+}
+
+function onPaste() {
+	errorMessage.value = ''
+}
 
 async function onChange(event: Event) {
 	const target = event.target as HTMLInputElement
 	const inputValue = target.value
 
-	errorMessage.value = ''
+	if (!inputValue) {
+		return
+	}
 
 	try {
 		const fileUrl = await loadFileUrl(inputValue)
@@ -36,19 +53,28 @@ async function onChange(event: Event) {
 <style scoped>
 .input-control {
 	appearance: none;
+	padding: 4px 8px;
+	margin: 0;
+	font-size: 12px;
+	border-radius: 8px;
 	border: 1px solid #cbd5e1;
 	background-color: white;
-	padding: 4px 6px;
-	font-size: 12px;
+	width: 100%;
 }
 
 .input-control:focus {
 	outline: none;
-	box-shadow: inset 0 0 0 1px #0ea5e9;
-	border-color: #0ea5e9;
+	box-shadow: inset 0 0 0 1px #06b6d4;
+	border-color: #06b6d4;
 }
 
 .input-control::placeholder {
-	color: #cbd5e1;
+	color: #64748b;
+}
+
+.input-control,
+.input-control::placeholder {
+	font-size: 12px;
+	font-family: inherit;
 }
 </style>

@@ -74,7 +74,10 @@ const mousedown = (event: MouseEvent) => {
 }
 
 const mousemove = (event: MouseEvent) => {
-	if (!isMousedown.value) return
+	if (!isMousedown.value) {
+		return
+	}
+
 	drag.value.currentX = event.clientX - drag.value.initialX
 	drag.value.currentY = event.clientY - drag.value.initialY
 	drag.value.offsetX = drag.value.currentX

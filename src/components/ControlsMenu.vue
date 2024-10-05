@@ -57,11 +57,11 @@ const { showControls, toggleShowControls } = useControls()
 
 .controls-menu-activator--active {
 	background-color: white;
-	outline: rgba(0, 0, 0, 0.2) solid 4px;
+	outline: rgba(0, 0, 0, 0.15) solid 4px;
 }
 
 .controls-menu-activator--active:hover {
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.15);
 }
 
 .controls-menu-activator--active:focus {
@@ -74,7 +74,7 @@ const { showControls, toggleShowControls } = useControls()
 	bottom: -16px;
 	display: flex;
 	flex-direction: column;
-	gap: 4px;
+	gap: 16px;
 	width: 248px;
 	transform-origin: calc(100% - 40px) calc(100% - 40px);
 	padding: 16px 16px 80px;

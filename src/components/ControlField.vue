@@ -1,6 +1,6 @@
 <template>
 	<div class="control-field">
-		<div class="control-field-label">
+		<div v-if="label" class="control-field-label">
 			{{ label }}
 		</div>
 
@@ -22,20 +22,18 @@ defineProps<{
 <style scoped>
 .control-field {
 	width: 100%;
-	border: 1px solid #cbd5e1;
-	border-radius: 4px;
-	padding: 6px 8px;
+	padding: 4px 8px;
 }
 
 .control-field-label {
 	font-size: 12px;
-	margin-bottom: 2px;
+	margin-bottom: 4px;
 	color: #334155;
 }
 
 .control-field-error {
 	font-size: 12px;
-	margin-top: 2px;
+	margin-top: 4px;
 	color: #cc0000;
 }
 </style>

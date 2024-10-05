@@ -1,6 +1,13 @@
 <template>
 	<ControlField :label="label">
-		<input type="range" :min="props.min" :max="props.max" :value="computedValue" @input="onInput" />
+		<input
+			type="range"
+			class="range-control"
+			:min="props.min"
+			:max="props.max"
+			:value="computedValue"
+			@input="onInput"
+		/>
 	</ControlField>
 </template>
 
@@ -27,3 +34,12 @@ function onInput(event: Event) {
 	emit('update:modelValue', Number(target.value) / 100)
 }
 </script>
+
+<style scoped>
+.range-control {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+</style>

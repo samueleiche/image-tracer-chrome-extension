@@ -5,13 +5,15 @@
 		</div>
 
 		<ControlsMenu>
-			<ImagePicker @change="imageSrc = $event" />
+			<ControlFieldGroup>
+				<ImagePicker @change="imageSrc = $event" />
+				<ImageFetcher @change="imageSrc = $event" />
+			</ControlFieldGroup>
 
-			<ImageFetcher @change="imageSrc = $event" />
-
-			<RangeFIeld :label="`Opacity ${opacity}`" :min="0" :max="100" v-model="opacity" />
-
-			<RangeFIeld :label="`Scale ${scale}x`" :min="10" :max="800" v-model="scale" />
+			<ControlFieldGroup>
+				<RangeFIeld :label="`Opacity ${opacity}`" :min="0" :max="100" v-model="opacity" />
+				<RangeFIeld :label="`Scale ${scale}x`" :min="1" :max="800" v-model="scale" />
+			</ControlFieldGroup>
 		</ControlsMenu>
 	</div>
 </template>
@@ -19,6 +21,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ControlsMenu from './components/ControlsMenu.vue'
+import ControlFieldGroup from './components/ControlFieldGroup.vue'
 import TracerImage from './components/TracerImage.vue'
 import ImagePicker from './components/ImagePicker.vue'
 import ImageFetcher from './components/ImageFetcher.vue'

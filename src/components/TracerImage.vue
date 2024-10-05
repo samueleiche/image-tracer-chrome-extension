@@ -13,7 +13,7 @@
 import { ref, computed } from 'vue'
 import { useControls } from '../composables/useControls'
 
-const { showControls, scale } = useControls()
+const { showControls, scale, rotation } = useControls()
 
 interface DragState {
 	initialX: number
@@ -54,18 +54,23 @@ const eventHandlers = computed(() => {
 })
 
 const wheel = (event: WheelEvent) => {
-	const zoomFactor = 0.01 * event.deltaY
-	let zoom = scale.value
+	if (event.shiftKey) {
+		const rotationFactor = event.deltaY > 0 ? 5 : -5
+		rotation.value += rotationFactor
+	} else {
+		const zoomFactor = 0.01 * event.deltaY
+		let newScale = scale.value
 
-	zoom -= zoomFactor
+		newScale -= zoomFactor
 
-	if (zoom < 0.01) {
-		zoom = 0.01
-	} else if (zoom > 8) {
-		zoom = 8
+		if (newScale < 0.01) {
+			newScale = 0.01
+		} else if (newScale > 8) {
+			newScale = 8
+		}
+
+		scale.value = parseFloat(newScale.toFixed(2))
 	}
-
-	scale.value = parseFloat(zoom.toFixed(2))
 
 	event.preventDefault()
 }
@@ -79,7 +84,7 @@ const computedTransform = computed(() => {
 	const y = drag.value.currentY
 
 	return {
-		transform: `translate3d(${x}px, ${y}px, 0) scale(${scale.value}, ${scale.value})`,
+		transform: `translate3d(${x}px, ${y}px, 0) scale(${scale.value}, ${scale.value}) rotate(${rotation.value}deg)`,
 	}
 })
 

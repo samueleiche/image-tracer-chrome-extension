@@ -13,7 +13,14 @@
 			<ControlFieldGroup>
 				<RangeFIeld :label="`Opacity ${opacity}`" :min="0" :max="100" v-model="opacity" />
 				<RangeFIeld :label="`Scale ${scale}x`" :min="1" :max="800" v-model="scale" />
+				<RangeFIeld :label="`Rotate ${rotation}deg`" :min="-36000" :max="36000" v-model="rotation" />
 			</ControlFieldGroup>
+
+			<template #footer>
+				<div class="controls-helper">
+					Tips: scrolling on the image will zoom it and shift+scroll will rotate it when this menu is open.
+				</div>
+			</template>
 		</ControlsMenu>
 	</div>
 </template>
@@ -28,7 +35,7 @@ import ImageFetcher from './components/ImageFetcher.vue'
 import RangeFIeld from './components/RangeField.vue'
 import { useControls } from './composables/useControls'
 
-const { opacity, scale, showControls } = useControls()
+const { opacity, scale, showControls, rotation } = useControls()
 
 const imageSrc = ref<string | undefined>(undefined)
 </script>
@@ -84,5 +91,10 @@ const imageSrc = ref<string | undefined>(undefined)
 
 .tracer-container--controls-visible .tracer-overlay {
 	pointer-events: auto;
+}
+
+.controls-helper {
+	font-size: 10px;
+	color: #64748b;
 }
 </style>

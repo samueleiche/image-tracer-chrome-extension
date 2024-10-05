@@ -3,6 +3,10 @@
 		<Transition name="menu-transition" mode="out-in">
 			<div v-show="showControls" class="controls-menu-content">
 				<slot />
+
+				<div class="controls-menu-content-footer">
+					<slot name="footer" />
+				</div>
 			</div>
 		</Transition>
 
@@ -81,6 +85,17 @@ const { showControls, toggleShowControls } = useControls()
 	border-radius: 24px;
 	background-color: white;
 	outline: rgba(255, 255, 255, 0.3) solid 4px;
+}
+
+.controls-menu-content-footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	height: 56px;
+	bottom: 12px;
+	left: 16px;
+	right: 80px;
 }
 
 .menu-transition-enter-active,

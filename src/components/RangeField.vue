@@ -1,31 +1,29 @@
 <template>
-	<input
-		class="tracer-range"
-		type="range"
-		:min="props.min"
-		:max="props.max"
-		:value="computedValue"
-		@input="onInput"
-	/>
+	<ControlField :label="label">
+		<input type="range" :min="props.min" :max="props.max" :value="computedValue" @input="onInput" />
+	</ControlField>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
-
-const props = defineProps<{
-	modelValue: number
-	min: number
-	max: number
-}>()
+import ControlField from './ControlField.vue'
 
 const emit = defineEmits<{
 	(e: 'update:modelValue', value: number): void
 }>()
 
+const props = defineProps<{
+	label: string
+	modelValue: number
+	min: number
+	max: number
+}>()
+
 const computedValue = computed(() => props.modelValue * 100)
 
-const onInput = (event: Event) => {
+function onInput(event: Event) {
 	const target = event.target as HTMLInputElement
+
 	emit('update:modelValue', Number(target.value) / 100)
 }
 </script>

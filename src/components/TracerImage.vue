@@ -4,13 +4,16 @@
 		:src="props.src"
 		:style="computedTransform"
 		draggable="false"
-		class="tracer-image"
-		v-on="eventsEnabled ? { mousedown, mousemove, mouseup } : {}"
+		:class="['tracer-image', { 'tracer-image--draggable': showControls }]"
+		v-on="eventHandlers"
 	/>
 </template>
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useControls } from '../composables/useControls'
+
+const { showControls } = useControls()
 
 interface DragState {
 	initialX: number
@@ -28,6 +31,7 @@ const props = defineProps<{
 }>()
 
 const imgRef = ref<HTMLElement | null>(null)
+
 const isMousedown = ref(false)
 const drag = ref<DragState>({
 	initialX: 0,
@@ -38,11 +42,21 @@ const drag = ref<DragState>({
 	offsetY: 0,
 })
 
-const eventsEnabled = computed(() => props.src && props.draggable)
+const eventHandlers = computed(() => {
+	if (props.src && props.draggable) {
+		return {
+			mousedown,
+			mousemove,
+			mouseup,
+		}
+	}
+
+	return {}
+})
 
 const computedTransform = computed(() => {
 	if (!imgRef.value) {
-		return null
+		return undefined
 	}
 
 	const x = drag.value.currentX
@@ -73,3 +87,15 @@ const mouseup = (event: MouseEvent) => {
 	isMousedown.value = false
 }
 </script>
+
+<style scoped>
+.tracer-image {
+	position: relative;
+	transform-origin: center center;
+	user-select: none;
+}
+
+.tracer-image--draggable {
+	cursor: grab;
+}
+</style>

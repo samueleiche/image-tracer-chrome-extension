@@ -8,7 +8,10 @@
 			<ControlFieldGroup>
 				<ImagePicker @change="imageSrc = $event" />
 				<ImageFetcher @change="imageSrc = $event" />
-				<input type="checkbox" :checked="isAttached" v-model="isAttached" />
+			</ControlFieldGroup>
+
+			<ControlFieldGroup>
+				<SwitchField label="Lock image position" v-model="isAttached" />
 			</ControlFieldGroup>
 
 			<ControlFieldGroup>
@@ -18,12 +21,14 @@
 			</ControlFieldGroup>
 
 			<ControlFieldGroup v-if="imageSrc">
-				<TextButton label="Clear image" @click="clearImage" />
-				<TextButton
-					label="Reset image"
-					title="Reset position, opacity, scale and rotation"
-					@click="resetImage"
-				/>
+				<div class="text-buttons-group">
+					<TextButton label="Clear image" @click="clearImage" />
+					<TextButton
+						label="Reset image"
+						title="Reset position, opacity, scale and rotation"
+						@click="resetImage"
+					/>
+				</div>
 			</ControlFieldGroup>
 
 			<template #footer>
@@ -44,6 +49,7 @@ import ImagePicker from './components/ImagePicker.vue'
 import ImageFetcher from './components/ImageFetcher.vue'
 import RangeField from './components/RangeField.vue'
 import TextButton from './components/TextButton.vue'
+import SwitchField from './components/SwitchField.vue'
 import { useControls } from './composables/useControls'
 import { useElementDrag } from './composables/useElementDrag'
 import { positionAttachedElementContainer } from './utils/dom'
@@ -122,5 +128,10 @@ watch(isAttached, () => {
 .controls-helper {
 	font-size: 10px;
 	color: #64748b;
+}
+
+.text-buttons-group {
+	display: flex;
+	justify-content: space-evenly;
 }
 </style>

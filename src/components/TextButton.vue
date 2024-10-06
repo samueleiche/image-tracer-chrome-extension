@@ -21,6 +21,7 @@ defineProps<{
 	cursor: pointer;
 	color: #b91c1c;
 	user-select: none;
+	flex-grow: 1;
 }
 
 .text-button:hover {

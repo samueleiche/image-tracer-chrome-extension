@@ -1,3 +1,5 @@
 # Image tracer extension for Google Chrome
 
-[Chrome web store](https://chrome.google.com/webstore/detail/image-tracer/ipihodppfeldhnbnpildmhkgkjkchloh)
+[Download from the Chrome Web Store](https://chrome.google.com/webstore/detail/image-tracer/ipihodppfeldhnbnpildmhkgkjkchloh)
+
+Icon designed by Freepik www.freepik.com.

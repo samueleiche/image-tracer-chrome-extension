@@ -45,7 +45,7 @@ function onWheelEvent(event: WheelEvent) {
 	}
 
 	if (event.shiftKey) {
-		const rotationFactor = event.deltaY > 0 ? 5 : -5
+		const rotationFactor = event.deltaY > 0 ? 3 : -3
 		let newRotation = rotation.value + rotationFactor
 
 		rotation.value = Math.min(Math.max(newRotation, -360), 360)

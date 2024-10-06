@@ -45,7 +45,7 @@ const { showControls, toggleShowControls } = useControls()
 	cursor: pointer;
 	background-color: #0ea5e9;
 	color: white;
-	outline: rgba(255, 255, 255, 0.3) solid 4px;
+	outline: #99a1bc4a solid 4px;
 	background-image: url('../assets/icon.png');
 	background-size: 50%;
 	background-repeat: no-repeat;
@@ -84,7 +84,7 @@ const { showControls, toggleShowControls } = useControls()
 	padding: 16px 16px 80px;
 	border-radius: 24px;
 	background-color: white;
-	outline: rgba(255, 255, 255, 0.3) solid 4px;
+	outline: #99a1bc4a solid 4px;
 }
 
 .ito-controls-menu-content-footer {

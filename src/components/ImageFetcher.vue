@@ -57,6 +57,7 @@ async function onChange(event: Event) {
 	margin: 0;
 	font-size: 12px;
 	border-radius: 8px;
+	height: auto;
 	border: 1px solid #cbd5e1;
 	background-color: white;
 	width: 100%;

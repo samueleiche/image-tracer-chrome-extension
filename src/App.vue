@@ -96,6 +96,7 @@ watch(isAttached, () => {
 
 #ImageTracerOverlayMount * {
 	box-sizing: border-box;
+	line-height: 16px;
 }
 
 :root {

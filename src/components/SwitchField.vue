@@ -1,12 +1,12 @@
 <template>
 	<ControlField>
-		<div class="switch-field" @click="$emit('update:modelValue', !modelValue)">
-			<div class="switch-field-label">
+		<div class="ito-switch-field" @click="$emit('update:modelValue', !modelValue)">
+			<div class="ito-switch-field-label">
 				{{ label }}
 			</div>
-			<div class="switch">
-				<div :class="['switch-button', { 'switch-button--on': modelValue }]">
-					<div class="switch-knob" />
+			<div class="ito-switch">
+				<div :class="['ito-switch-button', { 'ito-switch-button--on': modelValue }]">
+					<div class="ito-switch-knob" />
 				</div>
 			</div>
 		</div>
@@ -27,12 +27,12 @@ defineProps<{
 </script>
 
 <style scoped>
-.switch-field {
+.ito-switch-field {
 	display: flex;
 	cursor: pointer;
 }
 
-.switch-field-label {
+.ito-switch-field-label {
 	display: flex;
 	align-items: center;
 	font-size: 12px;
@@ -41,13 +41,13 @@ defineProps<{
 	flex-grow: 1;
 }
 
-.switch {
+.ito-switch {
 	display: flex;
 	align-items: center;
 	flex-shrink: 0;
 }
 
-.switch-button {
+.ito-switch-button {
 	position: relative;
 	flex-shrink: 0;
 	width: 40px;
@@ -57,16 +57,16 @@ defineProps<{
 	border-radius: 999px;
 }
 
-.switch-button--on {
+.ito-switch-button--on {
 	background-color: #06b6d4;
 	border-color: #06b6d4;
 }
 
-.switch-button--on .switch-knob {
+.ito-switch-button--on .ito-switch-knob {
 	left: calc(100% - 18px);
 }
 
-.switch-knob {
+.ito-switch-knob {
 	position: absolute;
 	left: 0;
 	height: 18px;

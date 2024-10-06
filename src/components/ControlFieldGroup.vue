@@ -1,11 +1,11 @@
 <template>
-	<div class="control-field-group">
+	<div class="ito-control-field-group">
 		<slot />
 	</div>
 </template>
 
 <style scoped>
-.control-field-group {
+.ito-control-field-group {
 	display: grid;
 	gap: 8px;
 	width: 100%;

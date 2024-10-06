@@ -1,6 +1,12 @@
 <template>
-	<div class="tracer-image-wrapper">
-		<img :src="props.src" :style="computedTransform" draggable="false" class="tracer-image" v-on="eventHandlers" />
+	<div class="ito-tracer-image-wrapper">
+		<img
+			:src="props.src"
+			:style="computedTransform"
+			draggable="false"
+			class="ito-tracer-image"
+			v-on="eventHandlers"
+		/>
 	</div>
 </template>
 
@@ -65,13 +71,13 @@ const computedTransform = computed<StyleValue>(() => {
 </script>
 
 <style scoped>
-.tracer-image {
+.ito-tracer-image {
 	position: relative;
 	transform-origin: center center;
 	user-select: none;
 }
 
-.tracer-image-wrapper {
+.ito-tracer-image-wrapper {
 	position: absolute;
 	display: flex;
 	justify-content: center;

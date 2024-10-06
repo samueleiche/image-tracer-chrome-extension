@@ -1,5 +1,5 @@
 <template>
-	<div class="text-button" @click="emit('click')">{{ label }}</div>
+	<div class="ito-text-button" @click="emit('click')">{{ label }}</div>
 </template>
 
 <script setup lang="ts">
@@ -13,7 +13,7 @@ defineProps<{
 </script>
 
 <style scoped>
-.text-button {
+.ito-text-button {
 	padding: 6px;
 	font-size: 12px;
 	font-weight: 700;
@@ -24,7 +24,7 @@ defineProps<{
 	flex-grow: 1;
 }
 
-.text-button:hover {
+.ito-text-button:hover {
 	color: #991b1b;
 }
 </style>

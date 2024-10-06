@@ -25,7 +25,7 @@ async function injectScript(tabId) {
 	const [injectionFunc] = await chrome.scripting.executeScript({
 		target: { tabId },
 		func: () => {
-			return window.__IMAGE_TRACER_EXTENSION_MOUNTED__
+			return window.__IMAGE_TRACER_OVERLAY_EXTENSION_MOUNTED__
 		},
 	})
 
@@ -40,7 +40,7 @@ async function injectScript(tabId) {
 		await chrome.scripting.executeScript({
 			target: { tabId },
 			func: () => {
-				window.__IMAGE_TRACER_EXTENSION_MOUNTED__ = true
+				window.__IMAGE_TRACER_OVERLAY_EXTENSION_MOUNTED__ = true
 			},
 		})
 	}

@@ -2,7 +2,7 @@
 	<ControlField :label="label">
 		<input
 			type="range"
-			class="range-control"
+			class="ito-range-control"
 			:min="props.min"
 			:max="props.max"
 			:value="computedValue"
@@ -36,19 +36,19 @@ function onInput(event: Event) {
 </script>
 
 <style scoped>
-.range-control {
+.ito-range-control {
 	width: 100%;
 	margin: 0;
 	padding: 0;
 	border: 0;
 }
 
-input[type='range'] {
+.ito-range-control {
 	font-size: 1.5rem;
 	width: 100%;
 }
 
-input[type='range'] {
+.ito-range-control {
 	color: #0ea5e9;
 	--thumb-height: 0.8em;
 	--track-height: 0.125em;
@@ -58,30 +58,30 @@ input[type='range'] {
 	--clip-edges: 0.125em;
 }
 
-input[type='range'] {
+.ito-range-control {
 	position: relative;
 	background: #fff0;
 	overflow: hidden;
 }
 
-input[type='range']:active {
+.ito-range-control:active {
 	cursor: grabbing;
 }
 
-input[type='range'],
-input[type='range']::-webkit-slider-runnable-track,
-input[type='range']::-webkit-slider-thumb {
+.ito-range-control,
+.ito-range-control::-webkit-slider-runnable-track,
+.ito-range-control::-webkit-slider-thumb {
 	-webkit-appearance: none;
 	transition: all ease 100ms;
 	height: var(--thumb-height);
 }
 
-input[type='range']::-webkit-slider-runnable-track,
-input[type='range']::-webkit-slider-thumb {
+.ito-range-control::-webkit-slider-runnable-track,
+.ito-range-control::-webkit-slider-thumb {
 	position: relative;
 }
 
-input[type='range']::-webkit-slider-thumb {
+.ito-range-control::-webkit-slider-thumb {
 	--thumb-radius: calc((var(--thumb-height) * 0.5) - 1px);
 	--clip-top: calc((var(--thumb-height) - var(--track-height)) * 0.5 - 0.5px);
 	--clip-bottom: calc(var(--thumb-height) - var(--clip-top));
@@ -107,17 +107,17 @@ input[type='range']::-webkit-slider-thumb {
 	);
 }
 
-input[type='range']:hover::-webkit-slider-thumb {
+.ito-range-control:hover::-webkit-slider-thumb {
 	filter: brightness(var(--brightness-hover));
 	cursor: grab;
 }
 
-input[type='range']:active::-webkit-slider-thumb {
+.ito-range-control:active::-webkit-slider-thumb {
 	filter: brightness(var(--brightness-down));
 	cursor: grabbing;
 }
 
-input[type='range']::-webkit-slider-runnable-track {
+.ito-range-control::-webkit-slider-runnable-track {
 	background: linear-gradient(var(--track-color) 0 0) scroll no-repeat center / 100% calc(var(--track-height) + 1px);
 }
 </style>

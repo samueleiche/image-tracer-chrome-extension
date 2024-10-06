@@ -1,9 +1,9 @@
 <template>
-	<div id="ImageTracerContainer" :class="[isAttached ? 'attached-container' : 'fixed-container']">
+	<div id="ImageTracerOverlayContainer" :class="[isAttached ? 'ito-attached-container' : 'ito-fixed-container']">
 		<TracerImage v-if="imageSrc" :src="imageSrc" />
 	</div>
 
-	<div class="fixed-container">
+	<div class="ito-fixed-container">
 		<ControlsMenu>
 			<ControlFieldGroup>
 				<ImagePicker @change="imageSrc = $event" />
@@ -21,7 +21,7 @@
 			</ControlFieldGroup>
 
 			<ControlFieldGroup v-if="imageSrc">
-				<div class="text-buttons-group">
+				<div class="ito-text-buttons-group">
 					<TextButton label="Clear image" @click="clearImage" />
 					<TextButton
 						label="Reset image"
@@ -32,7 +32,7 @@
 			</ControlFieldGroup>
 
 			<template #footer>
-				<div class="controls-helper">
+				<div class="ito-menu-helper">
 					Tips: Position the image by dragging. Ctrl+Scroll to change zoom. Shift+Scroll to rotate.
 				</div>
 			</template>
@@ -76,7 +76,7 @@ watch(isAttached, () => {
 </script>
 
 <style>
-#ImageTracerMount {
+#ImageTracerOverlayMount {
 	display: block !important;
 	font-family:
 		system-ui,
@@ -94,18 +94,18 @@ watch(isAttached, () => {
 		'Noto Color Emoji';
 }
 
-#ImageTracerMount * {
+#ImageTracerOverlayMount * {
 	box-sizing: border-box;
 }
 
 :root {
-	--image-tracer-attached-x: 0px;
-	--image-tracer-attached-y: 0px;
+	--image-tracer-overlay-attached-x: 0px;
+	--image-tracer-overlay-attached-y: 0px;
 }
 </style>
 
 <style scoped>
-.fixed-container {
+.ito-fixed-container {
 	pointer-events: none;
 	position: fixed;
 	top: 0;
@@ -115,22 +115,22 @@ watch(isAttached, () => {
 	z-index: 9999999999;
 }
 
-.attached-container {
+.ito-attached-container {
 	position: absolute;
-	top: var(--image-tracer-attached-x);
-	left: var(--image-tracer-attached-y);
+	top: var(--image-tracer-overlay-attached-x);
+	left: var(--image-tracer-overlay-attached-y);
 	width: 100%;
 	height: 100%;
 	z-index: 9999999999;
 	pointer-events: none;
 }
 
-.controls-helper {
+.ito-menu-helper {
 	font-size: 10px;
 	color: #64748b;
 }
 
-.text-buttons-group {
+.ito-text-buttons-group {
 	display: flex;
 	justify-content: space-evenly;
 }

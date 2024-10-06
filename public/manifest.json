@@ -1,6 +1,6 @@
 {
 	"manifest_version": 3,
-	"name": "Image Tracer",
+	"name": "Image Tracer Overlay",
 	"version": "2.0.0",
 	"description": "Tracing means transferring an image into line work from a photo or artwork. Choose an image to trace for browser drawing or sketching apps that lack this functionality.",
 	"permissions": ["activeTab", "scripting"],

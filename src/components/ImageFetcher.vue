@@ -3,7 +3,7 @@
 		<input
 			type="text"
 			placeholder="Press enter to submit"
-			class="input-control"
+			class="ito-input-control"
 			@input="onInput"
 			@change="onChange"
 			@paste="onPaste"
@@ -51,7 +51,7 @@ async function onChange(event: Event) {
 </script>
 
 <style scoped>
-.input-control {
+.ito-input-control {
 	appearance: none;
 	padding: 4px 8px;
 	margin: 0;
@@ -62,18 +62,18 @@ async function onChange(event: Event) {
 	width: 100%;
 }
 
-.input-control:focus {
+.ito-input-control:focus {
 	outline: none;
 	box-shadow: inset 0 0 0 1px #06b6d4;
 	border-color: #06b6d4;
 }
 
-.input-control::placeholder {
+.ito-input-control::placeholder {
 	color: #64748b;
 }
 
-.input-control,
-.input-control::placeholder {
+.ito-input-control,
+.ito-input-control::placeholder {
 	font-size: 12px;
 	font-family: inherit;
 }

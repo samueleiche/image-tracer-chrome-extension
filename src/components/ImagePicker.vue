@@ -1,6 +1,6 @@
 <template>
 	<ControlField label="Upload image">
-		<div class="upload-button" @click="openFilePicker">Browse</div>
+		<div class="ito-upload-button" @click="openFilePicker">Browse</div>
 		<input ref="inputRef" type="file" accept="image/*" style="display: none" @change="onFileUpload" />
 	</ControlField>
 </template>
@@ -36,7 +36,7 @@ function openFilePicker() {
 </script>
 
 <style scoped>
-.upload-button {
+.ito-upload-button {
 	padding: 8px 12px;
 	font-size: 12px;
 	background-color: #06b6d4;
@@ -47,7 +47,7 @@ function openFilePicker() {
 	cursor: pointer;
 }
 
-.upload-button:hover {
+.ito-upload-button:hover {
 	background-color: #0284c7;
 }
 </style>

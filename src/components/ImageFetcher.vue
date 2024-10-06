@@ -1,5 +1,5 @@
 <template>
-	<ControlField label="Paste image address" :error="errorMessage">
+	<ControlField label="Or paste image address" :error="errorMessage">
 		<input
 			type="text"
 			placeholder="Press enter to submit"

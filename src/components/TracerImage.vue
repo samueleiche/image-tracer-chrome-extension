@@ -1,115 +1,67 @@
 <template>
-	<img
-		ref="imgRef"
-		:src="props.src"
-		:style="computedTransform"
-		draggable="false"
-		:class="['tracer-image', { 'tracer-image--draggable': showControls }]"
-		v-on="eventHandlers"
-	/>
+	<div class="tracer-image-wrapper">
+		<img :src="props.src" :style="computedTransform" draggable="false" class="tracer-image" v-on="eventHandlers" />
+	</div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
+import type { StyleValue } from 'vue'
 import { useControls } from '../composables/useControls'
+import { useElementDrag } from '../composables/useElementDrag'
 
-const { showControls, scale, rotation } = useControls()
-
-interface DragState {
-	initialX: number
-	initialY: number
-	currentX: number
-	currentY: number
-	offsetX: number
-	offsetY: number
-}
+const { showControls, scale, opacity, rotation } = useControls()
+const { elementDrag, dragEvents } = useElementDrag()
 
 const props = defineProps<{
 	src: string
 }>()
 
-const imgRef = ref<HTMLElement | null>(null)
-
-const isMousedown = ref(false)
-const drag = ref<DragState>({
-	initialX: 0,
-	initialY: 0,
-	currentX: 0,
-	currentY: 0,
-	offsetX: 0,
-	offsetY: 0,
-})
-
 const eventHandlers = computed(() => {
 	if (props.src && showControls.value) {
 		return {
-			wheel,
-			mousedown,
-			mousemove,
-			mouseup,
+			wheel: onWheelEvent,
+			...dragEvents,
 		}
 	}
 
 	return {}
 })
 
-const wheel = (event: WheelEvent) => {
-	if (event.shiftKey) {
-		const rotationFactor = event.deltaY > 0 ? 5 : -5
-		rotation.value += rotationFactor
-	} else {
+function onWheelEvent(event: WheelEvent) {
+	if (event.ctrlKey) {
 		const zoomFactor = 0.01 * event.deltaY
 		let newScale = scale.value
 
 		newScale -= zoomFactor
 
-		if (newScale < 0.01) {
-			newScale = 0.01
-		} else if (newScale > 8) {
-			newScale = 8
-		}
-
-		scale.value = parseFloat(newScale.toFixed(2))
+		scale.value = parseFloat(Math.min(Math.max(newScale, 0.01), 8).toFixed(2))
 	}
 
-	event.preventDefault()
+	if (event.shiftKey) {
+		const rotationFactor = event.deltaY > 0 ? 5 : -5
+		let newRotation = rotation.value + rotationFactor
+
+		rotation.value = Math.min(Math.max(newRotation, -360), 360)
+	}
+
+	if (event.shiftKey || event.ctrlKey) {
+		event.preventDefault()
+	}
 }
 
-const computedTransform = computed(() => {
-	if (!imgRef.value) {
-		return undefined
-	}
-
-	const x = drag.value.currentX
-	const y = drag.value.currentY
-
+const computedTransform = computed<StyleValue>(() => {
 	return {
-		transform: `translate3d(${x}px, ${y}px, 0) scale(${scale.value}, ${scale.value}) rotate(${rotation.value}deg)`,
+		opacity: opacity.value,
+		cursor: showControls.value ? 'grab' : undefined,
+		pointerEvents: showControls.value ? 'auto' : undefined,
+		transform: `
+			translate3d(${elementDrag.currentX}px, ${elementDrag.currentY}px, 0) 
+			scale(${scale.value}, ${scale.value}) 
+			rotate(${rotation.value}deg)
+		`,
 	}
 })
-
-const mousedown = (event: MouseEvent) => {
-	drag.value.initialX = event.clientX - drag.value.offsetX
-	drag.value.initialY = event.clientY - drag.value.offsetY
-	isMousedown.value = true
-}
-
-const mousemove = (event: MouseEvent) => {
-	if (!isMousedown.value) {
-		return
-	}
-
-	drag.value.currentX = event.clientX - drag.value.initialX
-	drag.value.currentY = event.clientY - drag.value.initialY
-	drag.value.offsetX = drag.value.currentX
-	drag.value.offsetY = drag.value.currentY
-}
-
-const mouseup = (event: MouseEvent) => {
-	drag.value.initialX = event.clientX
-	drag.value.initialY = event.clientY
-	isMousedown.value = false
-}
 </script>
 
 <style scoped>
@@ -119,7 +71,12 @@ const mouseup = (event: MouseEvent) => {
 	user-select: none;
 }
 
-.tracer-image--draggable {
-	cursor: grab;
+.tracer-image-wrapper {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	width: 100%;
 }
 </style>

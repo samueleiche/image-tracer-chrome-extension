@@ -1,6 +1,8 @@
 import { ref } from 'vue'
 
 const showControls = ref(false)
+const isAttached = ref(false)
+
 const opacity = ref(0.7)
 const scale = ref(1)
 const rotation = ref(0)
@@ -20,6 +22,7 @@ export function useControls() {
 		opacity,
 		scale,
 		rotation,
+		isAttached,
 		showControls,
 		resetControls,
 		toggleShowControls,
